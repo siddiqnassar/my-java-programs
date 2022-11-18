@@ -1,0 +1,158 @@
+
+Adding the Employees and Addressing :-
+POST CALL :- http://localhost:8092/emp/saveEmp
+
+{
+    "name" : "siddiq"
+}
+
+return id if added successfully and 0 if unable to add.
+
+POST CALL :- http://localhost:8092/emp/saveAddress
+{
+    "city" : "Porumamilla",
+    "streetName" : "Winston",
+    "employee_id" : 10
+}
+
+return id if added successfully and 0 if unable to add.
+
+
+Update the employees and Addressing :-
+
+PUT CALL :- http://localhost:8092/emp/updateEmployee
+
+{
+    "employee_id" : 1,
+    "name" : "siddiq"
+}
+
+Response :-
+success :-
+{
+    "statusCode": 200,
+    "message": "updated the Employee info",
+    "employee": {
+        "employee_id": 22,
+        "name": "ray"
+    }
+}
+failure:-
+{
+    "statusCode": 404,
+    "message": "Unable to find com.nassar.employee.model.Employee with id 25; nested exception is javax.persistence.EntityNotFoundException: Unable to find com.nassar.employee.model.Employee with id 25",
+    "employee": null
+}
+
+PUT CALL :- http://localhost:8092/emp/updateAddress
+
+{
+    "address_id": 2,
+    "city" : "Porumamilla",
+    "streetName" : "Winston",
+    "employee_id" : 10
+}
+
+Response :-
+{
+    "statusCode": 200,
+    "message": "updated the Address info",
+    "obj": {
+        "address_id": 2,
+        "employee": {
+            "employee_id": 1,
+            "name": "siddiq"
+        },
+        "city": "Pml",
+        "streetName": "Mah"
+    }
+}
+
+error :-
+{
+    "statusCode": 404,
+    "message": "Unable to find com.nassar.employee.model.Address with id 24; nested exception is javax.persistence.EntityNotFoundException: Unable to find com.nassar.employee.model.Address with id 24",
+    "obj": null
+}
+
+Get the employees and Addressing :-
+
+GET CALL :- http://localhost:8092/emp/getEmp/1
+{
+    "statusCode": 200,
+    "message": "Able to get the Employee info",
+    "obj": {
+        "employee_id": 1,
+        "name": "siddiq"
+    }
+}
+error :-
+{
+    "statusCode": 404,
+    "message": "Unable to find com.nassar.employee.model.Employee with id 100",
+    "obj": null
+}
+
+GET CALL :- http://localhost:8092/emp/getAddress/1
+{
+    "statusCode": 200,
+    "message": "Able to get the Address info",
+    "obj": {
+        "address_id": 2,
+        "employee": {
+            "employee_id": 1,
+            "name": "siddiq"
+        },
+        "city": "Pml",
+        "streetName": "Mah"
+    }
+}
+error :-
+{
+    "statusCode": 404,
+    "message": "Unable to find com.nassar.employee.model.Address with id 211",
+    "obj": null
+}
+
+Get all the Employee List :-
+GET CALL:-  http://localhost:8092/emp/getallEmp
+
+GET all Address and Pagination :-
+http://localhost:8092/emp/getallAddress?pageCount=0&elementsPerPage=2&sort_by=city
+
+
+Delete the employees and Addressing :-
+
+DELETE CALL :- http://localhost:8092/emp/deleteEmp/1
+
+{
+    "statusCode": 200,
+    "message": "successfully deleted the employee from DB",
+    "obj": null
+}
+
+error :-
+
+{
+    "statusCode": 200,
+    "message": "Please delete child table elements of Employee DB",
+    "obj": null
+}
+
+GET CALL :- http://localhost:8092/emp/deleteAddress/1
+
+{
+    "statusCode": 200,
+    "message": "successfully deleted the address from DB",
+    "obj": null
+}
+error :-
+{
+    "statusCode": 500,
+    "message": "No class com.nassar.employee.model.Address entity with id 190 exists!",
+    "obj": null
+}
+
+
+
+

@@ -1,0 +1,22 @@
+version: "3.2"
+networks:
+  ping-pong-network:
+    name: custom-ping-pong-network
+services:
+  ping-service:
+    image: ping
+    container_name: ping-service
+    ports:
+      - 8091:8091
+    networks: 
+      - ping-pong-network
+  pong-service:
+    image: pong
+    container_name: pong-service 
+    depends_on:
+      - ping-service
+    ports:
+      - 8092:8092
+    networks: 
+      - ping-pong-network
+    
